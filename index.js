@@ -6,7 +6,7 @@ const app = express();
 const todoRoutes = express.Router();
 
 const port = 4000;
-const url = "mongodb://mongo:27017/todos";
+const url = "mongodb://mongodb:27017/todos";
 app.use(bodyParser.json());
 
 mongoose.connect(url, { useNewUrlParser: true, useCreateIndex: true });

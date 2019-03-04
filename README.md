@@ -1,3 +1,3 @@
-# Express with Docker {style=text-align:center}
+# Express with Docker
 
 ## EXPRESS MONGOOSE DOCKER

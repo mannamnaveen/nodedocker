@@ -11,9 +11,7 @@ services:
     environment:
       WAIT_HOSTS: mongodb:27017
   mongodb:
-    container_name: mongodb
+    container_name: node_mongodb
     image: mongo
     ports:
       - "27017:27017"
-    volumes:
-      - "nodeapp:/data/db"

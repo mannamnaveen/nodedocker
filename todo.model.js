@@ -1,21 +1,24 @@
 const mongoose = require("mongoose");
+const Joi = require("joi");
 const Schema = mongoose.Schema;
 
 let TodoSchema = new Schema(
   {
-    todo_description: {
+    description: {
       type: String,
       required: true,
       unique: true
     },
-    todo_responsible: {
+    responsible: {
       type: String,
       required: true
     },
-    todo_priority: {
-      type: String
+    priority: {
+      type: String,
+      enum: ["High", "Medium", "Low"],
+      required: true
     },
-    todo_completed: {
+    completed: {
       type: Boolean,
       default: false
     }
@@ -25,6 +28,19 @@ let TodoSchema = new Schema(
   }
 );
 
+function validateTodo(todo) {
+  const schema = {
+    description: Joi.string().required(),
+    responsible: Joi.string().required(),
+    priority: Joi.string().required(),
+    completed: Joi.boolean()
+  };
+  return Joi.validate(todo, schema);
+}
+
 const Todo = mongoose.model("Todo", TodoSchema);
 
-module.exports = Todo;
+module.exports = {
+  Todo,
+  validateTodo
+};
